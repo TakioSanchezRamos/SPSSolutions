@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HelloWorldBPELProcess" targetNamespace="http://xmlns.oracle.com/SOAApplication/HelloWorld/HelloWorldBPELProcess" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/SOAApplication/HelloWorld/HelloWorldBPELProcess" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>https://LAPTOP-0S6QOOO8:7102/soa-infra/services/default/HelloWorld!1.0/WSDLs/HelloWorldBPELProcess.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="HelloWorldBPELProcess">
+    <plnk:role name="HelloWorldBPELProcessProvider" portType="client:HelloWorldBPELProcess"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/SOAApplication/HelloWorld/HelloWorldBPELProcess" schemaLocation="helloworldbpelprocess_client_ep.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldBPELProcessRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="HelloWorldBPELProcessResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorldBPELProcess">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:HelloWorldBPELProcessRequestMessage"/>
+      <wsdl:output message="client:HelloWorldBPELProcessResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldBPELProcessBinding" type="client:HelloWorldBPELProcess">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="helloworldbpelprocess_client_ep">
+    <wsdl:port name="HelloWorldBPELProcess_pt" binding="client:HelloWorldBPELProcessBinding">
+      <soap:address location="https://LAPTOP-0S6QOOO8:7102/soa-infra/services/default/HelloWorld!1.0*soa_a823f2ec-7fae-4daf-b653-ce001beda5a5/helloworldbpelprocess_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
